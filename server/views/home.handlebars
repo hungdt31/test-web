@@ -1,0 +1,33 @@
+<div>
+  <div class="p-5">
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Teacher</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    {{#each rs}}
+    <tr>
+      <th scope="row">{{incrementIndex @index}}</th>
+      <td>
+        <img src={{this.image}} height="200" width="300"></img>
+      </td>
+      <td>
+        <p>{{this.title}}<i> - <i/>{{this.course_id}}</p>
+      </td>
+      <td>{{this.teacher}}</td>
+      <td>
+        <button type="button" class="btn btn-info">Detail</button>
+        <button type="button" class="btn btn-warning">Delete</button>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+  </table>
+  </div>
+</div>
