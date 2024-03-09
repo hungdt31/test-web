@@ -1,7 +1,8 @@
 const courses = require("../model/course")
+const {connection} = require("mongoose")
 const asyncHandler = require("express-async-handler")
 const getAllCourse = asyncHandler(async(req, res) => {
-  const rs = await courses.find().select("-createdAt -date -updatedAt -__v")
+  const rs = await courses.find({ deleted: false}).select("-createdAt -date -updatedAt -__v")
   return res.status(200).json({
     mess: "Get all courses successfully",
     response: rs
@@ -23,8 +24,16 @@ const deleteCourse = asyncHandler(async(req, res) => {
     response: _id
   })
 })
+const updateCourse = asyncHandler(async(req, res) => {
+  const rs = await courses.updateMany({}, { $set: { deleted: false } });
+  return res.status(200).json({
+    mess: 'Updated successfully',
+    response: rs
+  })
+})
 module.exports = {
   getAllCourse,
   addCourse,
-  deleteCourse
+  deleteCourse,
+  updateCourse
 }

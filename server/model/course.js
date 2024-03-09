@@ -12,6 +12,10 @@ const courseSchema = new Schema({
   comments: [{ body: String, date: Date }],
   date: { type: Date, default: Date.now },
   hidden: Boolean,
+  deleted:{
+    type:Boolean,
+    default: false
+  },
   image: {
     type: String,
     default: 'https://printgo.vn/uploads/media/796109/unnamed_1631691234.jpg'
